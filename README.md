@@ -11,7 +11,7 @@ Add `tmdb_elixir` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:tmdb_elixir, "~> 0.1.0"}
+    {:tmdb_elixir, "~> 1.0.0"}
   ]
 end
 ```
