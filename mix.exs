@@ -34,6 +34,7 @@ defmodule TmdbElixir.MixProject do
 
   defp package() do
     [
+      files: ~w(lib mix.exs README* LICENSE* CHANGELOG*),
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/alexbmoreira/tmdb-elixir"}
     ]
