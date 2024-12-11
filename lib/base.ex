@@ -1,29 +1,13 @@
 defmodule TmdbElixir.Base do
-  defmacro __using__(_) do
-    quote do
-      use HTTPoison.Base
+  @moduledoc false
 
-      def process_response_body(body) do
-        body
-        |> Poison.decode!
-      end
+  use HTTPoison.Base
 
-      def process_request_url(endpoint) do
-        base_url = URI.parse("https://api.themoviedb.org/3/")
-        URI.merge(base_url, endpoint) |> to_string()
-      end
+  def process_response_body(body), do: Poison.decode!(body)
 
-      def get!(url, headers \\ [], options \\ []) do
-        request!(
-          :get,
-          url,
-          "",
-          headers ++ auth_headers(),
-          options
-        )
-      end
+  def process_request_url(endpoint), do: "https://api.themoviedb.org/3/#{endpoint}"
 
-      defp auth_headers, do: [{"Authorization", "Bearer #{Application.fetch_env!(:tmdb_elixir, :auth_token)}"}, {"accept", "application/json"}]
-    end
-  end
+  def get!(url, headers \\ [], options \\ []), do: request!(:get, url, "", headers ++ auth_headers(), options)
+
+  defp auth_headers, do: [{"Authorization", "Bearer #{Application.fetch_env!(:tmdb_elixir, :auth_token)}"}, {"accept", "application/json"}]
 end

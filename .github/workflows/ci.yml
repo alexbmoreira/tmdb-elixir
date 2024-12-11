@@ -45,4 +45,4 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Publish
-      run: HEX_API_KEY=${{ secrets.HEX_API_KEY }} mix hex.publish package --yes --replace
+      run: HEX_API_KEY=${{ secrets.HEX_API_KEY }} mix hex.publish --yes
